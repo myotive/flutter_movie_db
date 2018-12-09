@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/data/models/discovered_film.dart';
-import 'package:flutter_movies/data/models/paginated_result.dart';
+import 'package:flutter_movies/data/models/paginated_discovered_film.dart';
 import 'package:flutter_movies/data/movie_db_api.dart';
 
 void main() => runApp(FilmApp());
@@ -34,7 +33,7 @@ class DiscoverMoviesState extends State<DiscoverMovies> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(title: Text("Discovery Movies"),),
-      body: FutureBuilder<PaginatedResult<DiscoveredFilm>>(
+      body: FutureBuilder<PaginatedDiscoveredFilm>(
           future: movieApi.discoverFilms(),
           builder: (context, snapshot){
 

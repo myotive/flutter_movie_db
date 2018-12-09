@@ -1,16 +1,16 @@
 class SearchResult {
-  String vote_count;
-  String id;
-  String video;
-  String vote_average;
+  num vote_count;
+  num id;
+  bool video;
+  num vote_average;
   String title;
-  String popularity;
+  num popularity;
   String poster_path;
   String original_language;
   String original_title;
-  String genre_ids;
+  List<int> genre_ids;
   String backdrop_path;
-  String adult;
+  bool adult;
   String overview;
   String release_date;
 
@@ -42,7 +42,7 @@ class SearchResult {
       poster_path: json['poster_path'],
       original_language: json['original_language'],
       original_title: json['original_title'],
-      genre_ids: json['genre_ids'],
+      genre_ids: List<int>.from(json['genre_ids']),
       backdrop_path: json['backdrop_path'],
       adult: json['adult'],
       overview: json['overview'],

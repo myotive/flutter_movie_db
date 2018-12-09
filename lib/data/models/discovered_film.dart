@@ -1,6 +1,5 @@
-import 'package:flutter_movies/data/models/json_result.dart';
 
-class DiscoveredFilm extends JSONResult{
+class DiscoveredFilm {
   int voteCount;
   int id;
   bool video;
@@ -14,7 +13,7 @@ class DiscoveredFilm extends JSONResult{
   String backdropPath;
   bool adult;
   String overview;
-  String releaseDate;
+  DateTime releaseDate;
 
   DiscoveredFilm(
       {this.voteCount,
@@ -32,9 +31,6 @@ class DiscoveredFilm extends JSONResult{
         this.overview,
         this.releaseDate});
 
-  @override
-  DiscoveredFilm fromJson(Map<String, dynamic> json) => DiscoveredFilm.fromJson(json);
-
   DiscoveredFilm.fromJson(Map<String, dynamic> json) {
     voteCount = json['vote_count'];
     id = json['id'];
@@ -49,7 +45,7 @@ class DiscoveredFilm extends JSONResult{
     backdropPath = json['backdrop_path'];
     adult = json['adult'];
     overview = json['overview'];
-    releaseDate = json['release_date'];
+    releaseDate = DateTime.parse(json['release_date']);
   }
 
   Map<String, dynamic> toJson() {

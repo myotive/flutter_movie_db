@@ -7,11 +7,29 @@ void main(){
   test('Test MovieDB Disovery', () async {
     var result = await movieDB.discoverFilms();
     expect(result.results.length > 0, isTrue);
+    expect(result.results[0], isNotNull);
     expect(result.page == 1, isTrue);
 
     var result2 = await movieDB.discoverFilms(page: 2);
     expect(result2.results.length > 0, isTrue);
+    expect(result2.results[0], isNotNull);
     expect(result2.page == 2, isTrue);
+  });
+
+  test('Test MovieDB Disovery With Criteria', () async {
+    var result = await movieDB.discoverFilmsWithCriteria();
+    expect(result.results.length > 0, isTrue);
+    expect(result.results[0], isNotNull);
+    expect(result.page == 1, isTrue);
+
+    var result2 = await movieDB.discoverFilmsWithCriteria(page: 2);
+    expect(result2.results.length > 0, isTrue);
+    expect(result2.results[0], isNotNull);
+    expect(result2.page == 2, isTrue);
+
+    var test = result.results.any((film) => film.releaseDate.year != 2018);
+    expect(test, false);
+    
   });
 
   test('Test MovieDB Get Actory By Id', () async {
@@ -33,7 +51,7 @@ void main(){
     expect(result.crew.length > 0, isTrue);
   });
 
-  test('Test MovieDB Disovery', () async {
+  test('Test MovieDB Search', () async {
     var result = await movieDB.search("star");
     expect(result.results.length > 0, isTrue);
     expect(result.page == 1, isTrue);
