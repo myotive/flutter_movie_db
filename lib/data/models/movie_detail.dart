@@ -1,4 +1,4 @@
-class Film {
+class MovieDetail {
   bool adult;
   String backdrop_path;
   String belongs_to_collection;
@@ -25,7 +25,7 @@ class Film {
   num vote_average;
   num vote_count;
 
-  Film({
+  MovieDetail({
     this.adult,
     this.backdrop_path,
     this.belongs_to_collection,
@@ -53,8 +53,8 @@ class Film {
     this.vote_count,
   });
 
-  static Film fromJson(Map<String, dynamic> json) {
-    return Film(
+  static MovieDetail fromJson(Map<String, dynamic> json) {
+    return MovieDetail(
       adult: json['adult'],
       backdrop_path: json['backdrop_path'],
       belongs_to_collection: json['belongs_to_collection'],

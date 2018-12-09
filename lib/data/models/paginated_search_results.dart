@@ -1,4 +1,4 @@
-import 'package:flutter_movies/data/models/discovered_film.dart';
+import 'package:flutter_movies/data/models/movie.dart';
 import 'package:flutter_movies/data/models/paginated_result.dart';
 import 'package:flutter_movies/data/models/search_result.dart';
 

@@ -7,13 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac02e57e-d697-48a8-a5df-0f22086067bc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/data/models/paginated_discovered_film.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/paginated_search_results.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/models/discovered_film.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/discovered_film.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/models/paginated_result.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/paginated_result.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/models/search_result.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/search_result.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/film.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/film.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/paginated_discovered_film.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/paginated_discovered_film.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/movie_db_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/movie_db_api.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/moviedb_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/moviedb_test.dart" afterDir="false" />
@@ -34,7 +32,7 @@
       <file leaf-file-name="main.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
+            <state relative-caret-position="-75">
               <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
@@ -43,8 +41,8 @@
       <file leaf-file-name="movie_db_api.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/data/movie_db_api.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1269">
-              <caret line="99" column="33" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
+            <state relative-caret-position="198">
+              <caret line="18" column="11" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="20" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -52,32 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_result.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/data/models/search_result.dart">
+      <file leaf-file-name="film.dart" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/data/models/film.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="40" column="37" lean-forward="true" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="moviedb_test.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/moviedb_test.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="29" column="56" lean-forward="true" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#55#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="discovered_film.dart" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/data/models/discovered_film.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="47" column="54" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+            <state>
+              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -85,8 +62,8 @@
       <file leaf-file-name="paginated_discovered_film.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/data/models/paginated_discovered_film.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            <state relative-caret-position="165">
+              <caret line="11" column="87" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="87" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
               </folding>
@@ -94,20 +71,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paginated_search_results.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/data/models/paginated_search_results.dart">
+      <file leaf-file-name="discovered_film.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/data/models/discovered_film.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="4" column="28" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="28" />
+            <state relative-caret-position="705">
+              <caret line="47" column="54" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paginated_result.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/data/models/paginated_result.dart">
+      <file leaf-file-name="moviedb_test.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/moviedb_test.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
+            <state relative-caret-position="105">
+              <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#55#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -126,6 +106,7 @@
       <find>create</find>
       <find>_Type</find>
       <find>PaginatedResult&lt;DiscoveredFilm&gt;</find>
+      <find>film</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -145,7 +126,6 @@
         <option value="$PROJECT_DIR$/lib/data/models/PaginatedResult.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/Credits.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/searchresult.dart" />
-        <option value="$PROJECT_DIR$/lib/data/models/film.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/actor.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/credits.dart" />
         <option value="$PROJECT_DIR$/lib/config.dart" />
@@ -153,11 +133,12 @@
         <option value="$PROJECT_DIR$/lib/data/models/paginated_result.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/paginated_discovered_film.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/paginated_search_results.dart" />
-        <option value="$PROJECT_DIR$/lib/data/movie_db_api.dart" />
         <option value="$PROJECT_DIR$/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/search_result.dart" />
-        <option value="$PROJECT_DIR$/test/moviedb_test.dart" />
         <option value="$PROJECT_DIR$/lib/data/models/discovered_film.dart" />
+        <option value="$PROJECT_DIR$/test/moviedb_test.dart" />
+        <option value="$PROJECT_DIR$/lib/data/movie_db_api.dart" />
+        <option value="$PROJECT_DIR$/lib/data/models/film.dart" />
       </list>
     </option>
   </component>
@@ -236,7 +217,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Flutter Test.Test MovieDB Disovery With Criteria">
+  <component name="RunManager" selected="Flutter Test.tests in moviedb_test.dart">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -264,12 +245,12 @@
       <option name="testName" value="Test MovieDB Disovery" />
       <option name="testFile" value="$PROJECT_DIR$/test/moviedb_test.dart" />
     </configuration>
-    <configuration name="Test MovieDB Get Film Credits" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
-      <option name="testName" value="Test MovieDB Get Film Credits" />
-      <option name="testFile" value="$PROJECT_DIR$/test/moviedb_test.dart" />
-    </configuration>
     <configuration name="Test MovieDB Search" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
       <option name="testName" value="Test MovieDB Search" />
+      <option name="testFile" value="$PROJECT_DIR$/test/moviedb_test.dart" />
+    </configuration>
+    <configuration name="Test MovieDB Upcoming" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testName" value="Test MovieDB Upcoming" />
       <option name="testFile" value="$PROJECT_DIR$/test/moviedb_test.dart" />
     </configuration>
     <configuration name="tests in moviedb_test.dart" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
@@ -305,17 +286,17 @@
       <item itemvalue="Flutter.main.dart" />
       <item itemvalue="Flutter Test.tests in moviedb_test.dart" />
       <item itemvalue="Flutter Test.Test MovieDB Disovery" />
-      <item itemvalue="Flutter Test.Test MovieDB Get Film Credits" />
       <item itemvalue="Flutter Test.Test MovieDB Disovery With Criteria" />
       <item itemvalue="Flutter Test.Test MovieDB Search" />
+      <item itemvalue="Flutter Test.Test MovieDB Upcoming" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Flutter Test.tests in moviedb_test.dart" />
+        <item itemvalue="Flutter Test.Test MovieDB Upcoming" />
         <item itemvalue="Flutter Test.Test MovieDB Disovery With Criteria" />
         <item itemvalue="Flutter Test.Test MovieDB Search" />
-        <item itemvalue="Flutter Test.tests in moviedb_test.dart" />
         <item itemvalue="Flutter Test.Test MovieDB Disovery" />
-        <item itemvalue="Flutter Test.Test MovieDB Get Film Credits" />
       </list>
     </recent_temporary>
   </component>
@@ -333,18 +314,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_MovieDB_Disovery_With_Criteria - 2018.12.09 at 14h 33m 43s.xml">
-      <configuration name="Test MovieDB Disovery With Criteria" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="Test_MovieDB_Disovery_With_Criteria - 2018.12.09 at 14h 34m 26s.xml">
-      <configuration name="Test MovieDB Disovery With Criteria" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="Test_MovieDB_Disovery - 2018.12.09 at 14h 35m 14s.xml">
-      <configuration name="Test MovieDB Disovery" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_moviedb_test_dart - 2018.12.09 at 14h 42m 49s.xml">
-      <configuration name="tests in moviedb_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
     <history-entry file="Test_MovieDB_Search - 2018.12.09 at 14h 43m 46s.xml">
       <configuration name="Test MovieDB Search" configurationId="FlutterTestConfigType" />
     </history-entry>
@@ -363,6 +332,18 @@
     <history-entry file="Test_MovieDB_Search - 2018.12.09 at 14h 45m 52s.xml">
       <configuration name="Test MovieDB Search" configurationId="FlutterTestConfigType" />
     </history-entry>
+    <history-entry file="Test_MovieDB_Disovery_With_Criteria - 2018.12.09 at 14h 46m 54s.xml">
+      <configuration name="Test MovieDB Disovery With Criteria" configurationId="FlutterTestConfigType" />
+    </history-entry>
+    <history-entry file="Test_MovieDB_Upcoming - 2018.12.09 at 15h 07m 46s.xml">
+      <configuration name="Test MovieDB Upcoming" configurationId="FlutterTestConfigType" />
+    </history-entry>
+    <history-entry file="tests_in_moviedb_test_dart - 2018.12.09 at 15h 07m 56s.xml">
+      <configuration name="tests in moviedb_test.dart" configurationId="FlutterTestConfigType" />
+    </history-entry>
+    <history-entry file="Test_MovieDB_Upcoming - 2018.12.09 at 15h 08m 45s.xml">
+      <configuration name="Test MovieDB Upcoming" configurationId="FlutterTestConfigType" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2048" height="1072" extended-state="6" />
@@ -378,18 +359,18 @@
       <window_info id="Designer" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4056604" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.4056604" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32914045" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Flutter Performance" order="8" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32914045" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32914045" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Captures" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20388834" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20388834" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -410,7 +391,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/data/movie_db_api.dart</url>
-          <line>99</line>
+          <line>116</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
@@ -418,17 +399,27 @@
           <line>5</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/test/moviedb_test.dart</url>
+          <line>9</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="dart-exception">
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>result</expression-string>
+        <language-id>Dart</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>List&lt;DiscoverdFilm&gt;.from(json['results'].map((movie) =&gt; DiscoverdFilm.fromJson(movie)))</expression-string>
         <language-id>Dart</language-id>
@@ -451,11 +442,6 @@
       </expression>
       <expression>
         <expression-string>result.results</expression-string>
-        <language-id>Dart</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>result</expression-string>
         <language-id>Dart</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -607,13 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/data/models/film.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/data/models/actor.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -663,23 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/data/models/paginated_discovered_film.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/data/models/search_result.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
@@ -687,30 +649,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/data/movie_db_api.dart">
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1269">
-          <caret line="99" column="33" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-75">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/moviedb_test.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="29" column="56" lean-forward="true" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
+        <state relative-caret-position="105">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
           <folding>
             <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/data/movie_db_api.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="18" column="11" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/data/models/discovered_film.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
+        <state relative-caret-position="705">
           <caret line="47" column="54" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/data/models/paginated_discovered_film.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="87" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/data/models/film.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,5 @@
 
-class DiscoveredFilm {
+class Movie {
   int voteCount;
   int id;
   bool video;
@@ -15,7 +15,7 @@ class DiscoveredFilm {
   String overview;
   DateTime releaseDate;
 
-  DiscoveredFilm(
+  Movie(
       {this.voteCount,
         this.id,
         this.video,
@@ -31,7 +31,7 @@ class DiscoveredFilm {
         this.overview,
         this.releaseDate});
 
-  DiscoveredFilm.fromJson(Map<String, dynamic> json) {
+  Movie.fromJson(Map<String, dynamic> json) {
     voteCount = json['vote_count'];
     id = json['id'];
     video = json['video'];

@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:flutter_movies/config.dart';
 import 'package:flutter_movies/data/models/actor.dart';
 import 'package:flutter_movies/data/models/credits.dart';
-import 'package:flutter_movies/data/models/film.dart';
-import 'package:flutter_movies/data/models/paginated_discovered_film.dart';
+import 'package:flutter_movies/data/models/movie.dart';
+import 'package:flutter_movies/data/models/movie_detail.dart';
+import 'package:flutter_movies/data/models/paginated_movies.dart';
 import 'package:flutter_movies/data/models/paginated_search_results.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,10 +13,11 @@ abstract class MovieDB {
 
   MovieDB();
 
-  Future<PaginatedDiscoveredFilm> discoverFilms({int page = 1});
-  Future<PaginatedDiscoveredFilm> discoverFilmsWithCriteria({int page = 1, int genres = 18, int primaryYearRelease = 2018 });
-  Future<Film> getFilmById(int movieId);
-  Future<Credits> getFilmCredits(int movieId);
+  Future<List<Movie>> upcomingMovies();
+  Future<PaginatedMovies> discoverMovies({int page = 1});
+  Future<PaginatedMovies> discoverMovieWithCriteria({int page = 1, int genres = 18, int primaryYearRelease = 2018 });
+  Future<MovieDetail> getMovieById(int movieId);
+  Future<Credits> getMovieCredits(int movieId);
   Future<Actor> getActorById(int actorId);
   Future<PaginatedSearchResults> search(String query, {int page = 1});
 
@@ -30,7 +32,22 @@ class _MovieRepository extends MovieDB{
 
   _MovieRepository._internal();
 
-  Future<PaginatedDiscoveredFilm> discoverFilms({int page = 1, String sort = "popularity.desc"}) async{
+
+  @override
+  Future<List<Movie>> upcomingMovies() async{
+    var url = Uri.https(MOVIE_DB_BASE_URL, '/3/movie/upcoming',
+        { 'api_key': API_KEY,
+          'language': 'en-US'
+        });
+
+    var response = await http.get(url);
+
+    var body = json.decode(response.body);
+
+    return List<Movie>.from(body['results'].map((movie) => Movie.fromJson(movie)));
+  }
+
+  Future<PaginatedMovies> discoverMovies({int page = 1, String sort = "popularity.desc"}) async{
     var url = Uri.https(MOVIE_DB_BASE_URL, '/3/discover/movie',
         { 'api_key': API_KEY,
           'page': page.toString(),
@@ -39,11 +56,11 @@ class _MovieRepository extends MovieDB{
 
     var response = await http.get(url);
 
-    return PaginatedDiscoveredFilm.fromJson(json.decode(response.body));
+    return PaginatedMovies.fromJson(json.decode(response.body));
   }
 
   @override
-  Future<PaginatedDiscoveredFilm> discoverFilmsWithCriteria({int page = 1, String sort = "popularity.desc", int genres = 18, int primaryYearRelease = 2018})  async {
+  Future<PaginatedMovies> discoverMovieWithCriteria({int page = 1, String sort = "popularity.desc", int genres = 18, int primaryYearRelease = 2018})  async {
     var url = Uri.https(MOVIE_DB_BASE_URL, '/3/discover/movie',
         { 'api_key': API_KEY,
           'page': page.toString(),
@@ -54,7 +71,7 @@ class _MovieRepository extends MovieDB{
 
     var response = await http.get(url);
 
-    return PaginatedDiscoveredFilm.fromJson(json.decode(response.body));
+    return PaginatedMovies.fromJson(json.decode(response.body));
   }
 
   @override
@@ -68,17 +85,17 @@ class _MovieRepository extends MovieDB{
   }
 
   @override
-  Future<Film> getFilmById(int movieId) async {
+  Future<MovieDetail> getMovieById(int movieId) async {
     var url = Uri.https(MOVIE_DB_BASE_URL, '/3/movie/$movieId',
         { 'api_key': API_KEY });
 
     var response = await http.get(url);
 
-    return Film.fromJson(json.decode(response.body));
+    return MovieDetail.fromJson(json.decode(response.body));
   }
 
   @override
-  Future<Credits> getFilmCredits(int movieId) async {
+  Future<Credits> getMovieCredits(int movieId) async {
     var url = Uri.https(MOVIE_DB_BASE_URL, '/3/movie/$movieId/credits',
         { 'api_key': API_KEY });
 
