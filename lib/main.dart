@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/data/models/paginated_movies.dart';
-import 'package:flutter_movies/data/movie_db_api.dart';
+import 'package:flutter_movies/ui/upcoming_movies.dart';
 
 void main() => runApp(FilmApp());
 
@@ -13,31 +12,28 @@ class FilmApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DiscoverMovies(),
+      home: HomePage(),
     );
   }
 }
 
-class DiscoverMovies extends StatefulWidget{
-  @override
-  DiscoverMoviesState createState() {
-    return new DiscoverMoviesState();
-  }
-}
-
-class DiscoverMoviesState extends State<DiscoverMovies> {
-
-  var movieApi = MovieDB.getInstance();
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(title: Text("Discovery Movies"),),
-      body: FutureBuilder<PaginatedMovies>(
-          future: movieApi.discoverMovies(),
-          builder: (context, snapshot){
+        appBar: AppBar(
+          title: Text("Movie App"),
+        ),
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          children: <Widget>[UpcomingMoviesWidget(), DiscoverMoviesWidget()],
+        ));
+  }
+}
 
-      }),
-    );
+class DiscoverMoviesWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text("Test");
   }
 }
