@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_movies/config.dart';
 import 'package:flutter_movies/data/models/actor.dart';
 import 'package:flutter_movies/data/models/credits.dart';
@@ -31,7 +32,6 @@ class _MovieRepository extends MovieDB{
   factory _MovieRepository() => _singleton;
 
   _MovieRepository._internal();
-
 
   @override
   Future<List<Movie>> upcomingMovies() async{

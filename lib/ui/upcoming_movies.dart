@@ -3,6 +3,7 @@ import 'package:flutter_movies/config.dart';
 import 'package:flutter_movies/data/models/movie.dart';
 import 'package:flutter_movies/data/movie_db_api.dart';
 import 'package:flutter_movies/ui/dots_indicator.dart';
+import 'package:flutter_movies/ui/movie_detail_page.dart';
 
 class UpcomingMoviesWidget extends StatelessWidget {
   @override
@@ -12,6 +13,8 @@ class UpcomingMoviesWidget extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (!snapshot.hasData) {
           return LoadingIndicatorWidget();
+        } else if (snapshot.hasError) {
+          // todo: handle error state
         }
 
         List<Movie> data = snapshot.data.sublist(0, 5);
@@ -81,9 +84,18 @@ class MoviePageViewState extends State<MoviePageView> {
 class UpcomingMovieItem extends StatelessWidget {
   final Movie movie;
   String _movieImageURL;
+  String _movieHeroTag;
 
   UpcomingMovieItem(this.movie) {
     _movieImageURL = "$MOVIE_DB_IMAGE_URL/t/p/w500${movie.backdropPath}";
+    _movieHeroTag = this.movie.id.toString();
+  }
+
+  void onImageTapped(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return MovieDetailPage(movie.title, _movieImageURL, _movieHeroTag);
+    }));
   }
 
   @override
@@ -97,7 +109,18 @@ class UpcomingMovieItem extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                   borderRadius: new BorderRadius.circular(8.0),
-                  child: Image.network(_movieImageURL, fit: BoxFit.scaleDown)
+                  child: Hero(
+                      tag: _movieHeroTag,
+                      child: Image.network(_movieImageURL,
+                          fit: BoxFit.scaleDown))),
+              Positioned.fill(
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    splashColor: Colors.lightBlue,
+                    onTap: () => onImageTapped(context),
+                  ),
+                ),
               ),
               Container(
                 margin: EdgeInsetsDirectional.only(bottom: 20),
@@ -108,9 +131,7 @@ class UpcomingMovieItem extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       shadows: [
-                        Shadow(
-                            color: Colors.black,
-                            offset: Offset(-1.5, -1.5))
+                        Shadow(color: Colors.black, offset: Offset(1.5, 1.5))
                       ]),
                 ),
               )
