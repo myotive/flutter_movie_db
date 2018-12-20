@@ -8,6 +8,7 @@ import 'package:flutter_movies/data/models/movie.dart';
 import 'package:flutter_movies/data/models/movie_detail.dart';
 import 'package:flutter_movies/data/models/paginated_movies.dart';
 import 'package:flutter_movies/data/models/paginated_search_results.dart';
+import 'package:flutter_movies/data/models/paginated_similarmovies.dart';
 import 'package:http/http.dart' as http;
 
 abstract class MovieDB {
@@ -18,6 +19,7 @@ abstract class MovieDB {
   Future<PaginatedMovies> discoverMovies({int page = 1});
   Future<PaginatedMovies> discoverMovieWithCriteria({int page = 1, int genres = 18, int primaryYearRelease = 2018 });
   Future<MovieDetail> getMovieById(int movieId);
+  Future<PaginatedSimilarMovies> getSimilarMovies(int movieId, {int page = 1});
   Future<Credits> getMovieCredits(int movieId);
   Future<Actor> getActorById(int actorId);
   Future<PaginatedSearchResults> search(String query, {int page = 1});
@@ -33,6 +35,10 @@ class _MovieRepository extends MovieDB{
 
   _MovieRepository._internal();
 
+  static List<Movie> _computeMovies(dynamic body) => List<Movie>.from(body.map((movie) => Movie.fromJson(movie)));
+  static PaginatedMovies _computePaginatedMovies(dynamic body) => PaginatedMovies.fromJson(body);
+  static PaginatedSimilarMovies _computePaginatedSimilarMovies(dynamic body) => PaginatedSimilarMovies.fromJson(body);
+
   @override
   Future<List<Movie>> upcomingMovies() async{
     var url = Uri.https(MOVIE_DB_BASE_URL, '/3/movie/upcoming',
@@ -44,7 +50,7 @@ class _MovieRepository extends MovieDB{
 
     var body = json.decode(response.body);
 
-    return List<Movie>.from(body['results'].map((movie) => Movie.fromJson(movie)));
+    return compute(_computeMovies, body['results']);
   }
 
   Future<PaginatedMovies> discoverMovies({int page = 1, String sort = "popularity.desc"}) async{
@@ -56,7 +62,19 @@ class _MovieRepository extends MovieDB{
 
     var response = await http.get(url);
 
-    return PaginatedMovies.fromJson(json.decode(response.body));
+    return compute(_computePaginatedMovies, json.decode(response.body));
+  }
+
+
+  @override
+  Future<PaginatedSimilarMovies> getSimilarMovies(int movieId, {int page = 1}) async{
+    var url = Uri.https(MOVIE_DB_BASE_URL, '/3/movie/$movieId/similar',
+        { 'api_key': API_KEY,
+          'page': page.toString()});
+
+    var response = await http.get(url);
+
+    return compute(_computePaginatedSimilarMovies, json.decode(response.body));
   }
 
   @override
@@ -71,7 +89,7 @@ class _MovieRepository extends MovieDB{
 
     var response = await http.get(url);
 
-    return PaginatedMovies.fromJson(json.decode(response.body));
+    return compute(_computePaginatedMovies, json.decode(response.body));
   }
 
   @override

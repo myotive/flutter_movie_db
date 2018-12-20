@@ -51,6 +51,18 @@ void main(){
     expect(result.title == "A Star Is Born", isTrue);
   });
 
+  test('Test MovieDB Get Similar Movies', () async {
+    var result = await movieDB.getSimilarMovies(332562);
+    expect(result.results.length > 0, isTrue);
+    expect(result.results[0], isNotNull);
+    expect(result.page == 1, isTrue);
+
+    var result2 = await movieDB.getSimilarMovies(332562, page: 2);
+    expect(result2.results.length > 0, isTrue);
+    expect(result2.results[0], isNotNull);
+    expect(result2.page == 2, isTrue);
+  });
+
   test('Test MovieDB Get Film Credits', () async {
     var result = await movieDB.getMovieCredits(332562);
     expect(result.id == 332562, isTrue);

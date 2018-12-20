@@ -14,7 +14,7 @@ class MovieDetail {
   String poster_path;
   List<dynamic> production_companies;
   List<dynamic> production_countries;
-  String release_date;
+  DateTime release_date;
   num revenue;
   num runtime;
   List<dynamic> spoken_languages;
@@ -70,7 +70,7 @@ class MovieDetail {
       poster_path: json['poster_path'],
       production_companies: json['production_companies'],
       production_countries: json['production_countries'],
-      release_date: json['release_date'],
+      release_date: DateTime.parse(json['release_date']),
       revenue: json['revenue'],
       runtime: json['runtime'],
       spoken_languages: json['spoken_languages'],

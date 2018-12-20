@@ -3,6 +3,7 @@ import 'package:flutter_movies/config.dart';
 import 'package:flutter_movies/data/models/movie.dart';
 import 'package:flutter_movies/data/movie_db_api.dart';
 import 'package:flutter_movies/ui/dots_indicator.dart';
+import 'package:flutter_movies/ui/loading_indicator_widget.dart';
 import 'package:flutter_movies/ui/movie_detail_page.dart';
 
 class UpcomingMoviesWidget extends StatelessWidget {
@@ -87,14 +88,14 @@ class UpcomingMovieItem extends StatelessWidget {
   String _movieHeroTag;
 
   UpcomingMovieItem(this.movie) {
-    _movieImageURL = "$MOVIE_DB_IMAGE_URL/t/p/w500${movie.backdropPath}";
+    _movieImageURL = "$IMAGE_URL_500${movie.backdropPath}";
     _movieHeroTag = this.movie.id.toString();
   }
 
   void onImageTapped(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
-      return MovieDetailPage(movie.title, _movieImageURL, _movieHeroTag);
+      return MovieDetailPage(movie.id, movie.title, _movieImageURL, _movieHeroTag);
     }));
   }
 
@@ -139,15 +140,6 @@ class UpcomingMovieItem extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class LoadingIndicatorWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: CircularProgressIndicator(),
     );
   }
 }
