@@ -7,6 +7,7 @@ import 'package:flutter_movies/data/models/paginated_similarmovies.dart';
 import 'package:flutter_movies/data/movie_db_api.dart';
 import 'package:flutter_movies/ui/loading_indicator_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MovieDetailPage extends StatelessWidget {
   final int movieId;
@@ -33,8 +34,8 @@ class MovieDetailPage extends StatelessWidget {
                   ),
                   background: Hero(
                       tag: heroImageTag,
-                      child: Image.network(
-                        heroImageURL,
+                      child: CachedNetworkImage(
+                        imageUrl: heroImageURL,
                         fit: BoxFit.fitHeight,
                       )),
                 )),
@@ -227,8 +228,9 @@ class DetailImageWidget extends StatelessWidget {
                     borderRadius: new BorderRadius.circular(8.0),
                     child: Hero(
                       tag: heroTag ?? _imageCaption,
-                      child: Image.network(
-                        _imageURL,
+                      child: CachedNetworkImage(
+                        imageUrl: _imageURL,
+                        //placeholder: ,
                       ),
                     )),
                 Positioned.fill(

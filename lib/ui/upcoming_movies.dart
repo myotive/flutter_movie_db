@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/config.dart';
 import 'package:flutter_movies/data/models/movie.dart';
@@ -112,7 +113,8 @@ class UpcomingMovieItem extends StatelessWidget {
                   borderRadius: new BorderRadius.circular(8.0),
                   child: Hero(
                       tag: _movieHeroTag,
-                      child: Image.network(_movieImageURL,
+                      child: CachedNetworkImage(
+                          imageUrl: _movieImageURL,
                           fit: BoxFit.scaleDown))),
               Positioned.fill(
                 child: Material(
