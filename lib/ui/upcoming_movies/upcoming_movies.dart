@@ -5,7 +5,7 @@ import 'package:flutter_movies/data/models/movie.dart';
 import 'package:flutter_movies/data/movie_db_api.dart';
 import 'package:flutter_movies/ui/dots_indicator.dart';
 import 'package:flutter_movies/ui/loading_indicator_widget.dart';
-import 'package:flutter_movies/ui/movie_detail_page.dart';
+import 'package:flutter_movies/ui/movie_details/movie_detail_page.dart';
 
 class UpcomingMoviesWidget extends StatelessWidget {
   @override

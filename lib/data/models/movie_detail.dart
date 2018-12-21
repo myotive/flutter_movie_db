@@ -1,7 +1,7 @@
 class MovieDetail {
   bool adult;
   String backdrop_path;
-  String belongs_to_collection;
+  //String belongs_to_collection;
   num budget;
   List<dynamic> genres;
   String homepage;
@@ -28,7 +28,7 @@ class MovieDetail {
   MovieDetail({
     this.adult,
     this.backdrop_path,
-    this.belongs_to_collection,
+    //this.belongs_to_collection,
     this.budget,
     this.genres,
     this.homepage,
@@ -57,7 +57,7 @@ class MovieDetail {
     return MovieDetail(
       adult: json['adult'],
       backdrop_path: json['backdrop_path'],
-      belongs_to_collection: json['belongs_to_collection'],
+      //belongs_to_collection: json['belongs_to_collection'],
       budget: json['budget'],
       genres: json['genres'],
       homepage: json['homepage'],
@@ -86,7 +86,7 @@ class MovieDetail {
   Map<String, dynamic> toJson() => {
         'adult': adult,
         'backdrop_path': backdrop_path,
-        'belongs_to_collection': belongs_to_collection,
+        //'belongs_to_collection': belongs_to_collection,
         'budget': budget,
         'genres': genres,
         'homepage': homepage,

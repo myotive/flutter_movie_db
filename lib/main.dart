@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/ui/upcoming_movies.dart';
+import 'package:flutter_movies/ui/upcoming_movies/upcoming_movies.dart';
 
 void main() => runApp(FilmApp());
 
