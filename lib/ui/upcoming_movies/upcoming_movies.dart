@@ -11,6 +11,7 @@ class UpcomingMoviesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
+      key: UniqueKey(),
       future: MovieDB.getInstance().upcomingMovies(),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (!snapshot.hasData) {

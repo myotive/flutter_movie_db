@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'package:android_intent/android_intent.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/data/models/movie_detail.dart';
 import 'package:flutter_movies/data/movie_db_api.dart';
@@ -53,6 +56,24 @@ class _MovieSummaryWidget extends StatefulWidget {
 }
 
 class _MovieSummaryWidgetState extends State<_MovieSummaryWidget> {
+
+  void _launchWeb(String url) async {
+    if(Platform.isAndroid){
+      AndroidIntent intent = new AndroidIntent(
+        action: 'action_view',
+        data: url
+      );
+      await intent.launch();
+    }
+    else{
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Flex(
@@ -60,20 +81,30 @@ class _MovieSummaryWidgetState extends State<_MovieSummaryWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Column(
+        Column(children: <Widget>[
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+                "Release Date: ${formatter.format(widget.movieDetail.release_date)}"),
+          )
+        ]),
+        Text(
+          widget.movieDetail.overview,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-                  "Release Date: ${formatter.format(widget.movieDetail.release_date)}"),
-            ),
+            GestureDetector(
+                onTap: () => _launchWeb(
+                    "https://www.imdb.com/title/${widget.movieDetail.imdb_id}"),
+                child: Image.asset("assets/images/imdb.png",
+                    height: 100, width: 100)),
+/*            GestureDetector(
+              onTap: () => _launchWebview(""),
+                child: Image.asset("assets/images/rt.png",
+                    height: 100, width: 100))*/
           ],
-        ),
-        Container(
-          child: Text(
-            widget.movieDetail.overview,
-          ),
-        ),
+        )
       ],
     );
   }

@@ -36,10 +36,15 @@ class MovieDetailPage extends StatelessWidget {
                 )),
             SliverList(
               delegate: SliverChildListDelegate([
-                Container(
-                  height: 200,
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  child: MovieDetailWidget(movieId),
+                Flex(
+                  /*height: 200,
+                  margin: EdgeInsets.symmetric(horizontal: 10),*/
+                  direction: Axis.vertical,
+                  children: <Widget>[
+                    Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child: MovieDetailWidget(movieId))
+                  ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
