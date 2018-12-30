@@ -64,7 +64,8 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
 
             UpcomingMoviesWidget(),
-            DiscoverMoviesWidget()
+            DiscoverMoviesWidget(),
+            DiscoverGenreMoviesWidget()
           ],
         ));
   }
@@ -78,52 +79,86 @@ class DiscoverMoviesWidget extends StatelessWidget {
       future: MovieDB.getInstance().discoverMovies(),
       builder: (BuildContext context, AsyncSnapshot<PaginatedMovies> snapshot) {
         if (!snapshot.hasData) {
-          return LoadingIndicatorWidget();
+          return Container();
         } else if (snapshot.hasError) {
           // todo: handle error state
         }
 
         var data = snapshot.data;
 
-        return DiscoverMovieListWidget(data);
+        return MovieListWidget(data, "Upcoming Movies", "upcoming");
       },
     );
   }
 }
 
-class DiscoverMovieListWidget extends StatelessWidget{
-  final PaginatedMovies data;
+class DiscoverGenreMoviesWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      key: UniqueKey(),
+      future: MovieDB.getInstance().discoverMovieWithCriteria(genres: 18),
+      builder: (BuildContext context, AsyncSnapshot<PaginatedMovies> snapshot) {
+        if (!snapshot.hasData) {
+          return Container();
+        } else if (snapshot.hasError) {
+          // todo: handle error state
+        }
 
-  DiscoverMovieListWidget(this.data);
+        var data = snapshot.data;
+
+        return MovieListWidget(data, "Discover 2018 Dramas", "genre");
+      },
+    );
+  }
+}
+
+class MovieListWidget extends StatelessWidget{
+  final PaginatedMovies data;
+  final String title;
+  final String heroKey;
+
+  MovieListWidget(this.data, this.title, this.heroKey);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: data.results.length,
-          itemBuilder: (BuildContext context, int index) {
-            var movie = data.results[index];
+      margin: EdgeInsets.all(10),
+      child: Column(
+        children: <Widget>[
 
-            var posterUrl = "$IMAGE_URL_500${movie.posterPath}";
-            var detailUrl = "$IMAGE_URL_500${movie.backdropPath}";
-            var heroTag = "${movie.id.toString()}_discovered";
+          Align(alignment: Alignment.topLeft, 
+              child: Text(title)),
 
-            return DetailImageWidget(
-              posterUrl,
-              movie.title,
-              index,
-              callback: (index) {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return MovieDetailPage(movie.id, movie.title, detailUrl, heroTag);
-                }));
-              },
-              heroTag: heroTag,
-            );
-          }),
+          Container(
+            height: 200,
+            margin: EdgeInsets.only(top: 10),
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: data.results.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var movie = data.results[index];
+
+                  var posterUrl = "$IMAGE_URL_500${movie.posterPath}";
+                  var detailUrl = "$IMAGE_URL_500${movie.backdropPath}";
+                  var heroTag = "${movie.id.toString()}$heroKey";
+
+                  return DetailImageWidget(
+                    posterUrl,
+                    movie.title,
+                    index,
+                    callback: (index) {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (BuildContext context) {
+                        return MovieDetailPage(movie.id, movie.title, detailUrl, heroTag);
+                      }));
+                    },
+                    heroTag: heroTag,
+                  );
+                }),
+          ),
+        ],
+      ),
     );
   }
 }

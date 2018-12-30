@@ -98,11 +98,7 @@ class _MovieSummaryWidgetState extends State<_MovieSummaryWidget> {
                 onTap: () => _launchWeb(
                     "https://www.imdb.com/title/${widget.movieDetail.imdb_id}"),
                 child: Image.asset("assets/images/imdb.png",
-                    height: 100, width: 100)),
-/*            GestureDetector(
-              onTap: () => _launchWebview(""),
-                child: Image.asset("assets/images/rt.png",
-                    height: 100, width: 100))*/
+                    height: 100, width: 100))
           ],
         )
       ],
