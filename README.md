@@ -1,7 +1,7 @@
 Flutter MovieDB app
 =====================================
 
-![Sample](https://raw.githubusercontent.com/myotive/flutter_movie_db/master/screenshots/sample.gif)
+<img src="https://raw.githubusercontent.com/myotive/flutter_movie_db/master/screenshots/sample.gif" width="300" alt="sample image" />
 
 This is a sample project I have been playing around with while learning flutter. Pull Requests welcome ;)
 
