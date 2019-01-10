@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/config.dart';
 import 'package:flutter_movies/data/models/paginated_movies.dart';
+import 'package:flutter_movies/data/models/paginated_search_results.dart';
+import 'package:flutter_movies/data/models/search_result.dart';
 import 'package:flutter_movies/data/movie_db_api.dart';
 import 'package:flutter_movies/ui/loading_indicator_widget.dart';
 import 'package:flutter_movies/ui/movie_details/detail_image_widget.dart';
@@ -32,42 +34,101 @@ class FilmApp extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   @override
-  HomePageState createState() {
-    return new HomePageState();
+  _HomePageState createState() {
+    return new _HomePageState();
   }
 }
 
-class HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   SearchBar searchBar;
-  bool _isSearching = false;
+  String searchQuery = "";
 
-  HomePageState() {
+  PaginatedSearchResults searchResults;
+
+  _HomePageState() {
     searchBar = new SearchBar(
         inBar: false,
         setState: setState,
-        onSubmitted: print,
+        closeOnSubmit: false,
+        clearOnSubmit: false,
+        onSubmitted: (String query) {
+          setState(() {
+            searchQuery = query;
+            var call = MovieDB.getInstance().search(searchQuery);
+            call.then((result) {
+              setState(() {
+                this.searchResults = result;
+              });
+            });
+          });
+        },
         buildDefaultAppBar: buildAppBar);
   }
 
   AppBar buildAppBar(BuildContext context) {
-    return new AppBar(
-        title: new Text('Movie App'),
+    return AppBar(
+        title: Text('Movie App'),
         actions: [searchBar.getSearchAction(context)]);
   }
 
   @override
   Widget build(BuildContext context) {
+    var widgets = searchBar.isSearching.value
+        ? [SearchMovieWidget(searchResults)]
+        : [
+            UpcomingMoviesWidget(),
+            DiscoverMoviesWidget(),
+            DiscoverGenreMoviesWidget()
+          ];
+
     return Scaffold(
         appBar: searchBar.build(context),
         body: ListView(
           scrollDirection: Axis.vertical,
-          children: <Widget>[
-
-            UpcomingMoviesWidget(),
-            DiscoverMoviesWidget(),
-            DiscoverGenreMoviesWidget()
-          ],
+          children: widgets,
         ));
+  }
+}
+
+class SearchMovieWidget extends StatelessWidget {
+  PaginatedSearchResults results;
+
+  SearchMovieWidget(this.results);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: results?.results?.length ?? 0,
+        itemBuilder: (BuildContext context, int index) {
+          var movie = results.results[index];
+
+          var container = Container(
+              width: 200,
+              child: _buildMovieWidget(context, movie, "searchResult", index));
+
+          return container;
+        });
+  }
+
+  _buildMovieWidget(
+      BuildContext context, SearchResult movie, String heroKey, int index) {
+    var posterUrl = "$IMAGE_URL_500${movie.poster_path}";
+    var detailUrl = "$IMAGE_URL_500${movie.backdrop_path}";
+    var heroTag = "${movie.id.toString()}$heroKey";
+
+    return DetailImageWidget(
+      posterUrl,
+      movie.title,
+      index,
+      callback: (index) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (BuildContext context) {
+          return MovieDetailPage(movie.id, movie.title, detailUrl, heroTag);
+        }));
+      },
+      heroTag: heroTag,
+    );
   }
 }
 
@@ -113,7 +174,7 @@ class DiscoverGenreMoviesWidget extends StatelessWidget {
   }
 }
 
-class MovieListWidget extends StatelessWidget{
+class MovieListWidget extends StatelessWidget {
   final PaginatedMovies data;
   final String title;
   final String heroKey;
@@ -126,10 +187,7 @@ class MovieListWidget extends StatelessWidget{
       margin: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
-
-          Align(alignment: Alignment.topLeft, 
-              child: Text(title)),
-
+          Align(alignment: Alignment.topLeft, child: Text(title)),
           Container(
             height: 200,
             margin: EdgeInsets.only(top: 10),
@@ -148,9 +206,10 @@ class MovieListWidget extends StatelessWidget{
                     movie.title,
                     index,
                     callback: (index) {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (BuildContext context) {
-                        return MovieDetailPage(movie.id, movie.title, detailUrl, heroTag);
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return MovieDetailPage(
+                            movie.id, movie.title, detailUrl, heroTag);
                       }));
                     },
                     heroTag: heroTag,
